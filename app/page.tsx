@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import {
   ChevronLeft,
   ChevronRight,
@@ -47,25 +48,25 @@ const OneLondonChurch = () => {
       title: "Youth Ministry",
       description:
         "Empowering the next generation through dynamic worship, biblical teaching, and meaningful connections.",
-      image: "bg-gradient-to-br from-blue-500 to-indigo-600",
+      image: "/images/one-london-2.jpg",
     },
     {
       title: "Community Outreach",
       description:
         "Serving our neighbors through food banks, homeless support, and local partnerships that make a difference.",
-      image: "bg-gradient-to-br from-purple-500 to-pink-600",
+      image: "/images/one-london-3.jpg",
     },
     {
       title: "Worship Ministry",
       description:
         "Creating powerful worship experiences that connect hearts to God through music, arts, and creative expression.",
-      image: "bg-gradient-to-br from-amber-500 to-orange-600",
+      image: "/images/one-london-13.png",
     },
     {
       title: "Children's Ministry",
       description:
         "Nurturing young hearts with age-appropriate teaching, fun activities, and a safe environment to grow in faith.",
-      image: "bg-gradient-to-br from-green-500 to-teal-600",
+      image: "/images/one-london-11.png",
     },
   ];
 
@@ -214,6 +215,18 @@ const OneLondonChurch = () => {
         id="home"
         className="pt-20 h-screen relative overflow-hidden bg-gray-900"
       >
+        {/* Hero Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/one-london-12.png"
+            alt="One London Church"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
+
         {heroSlides.map((slide, idx) => (
           <div
             key={idx}
@@ -221,8 +234,6 @@ const OneLondonChurch = () => {
               idx === activeSlide ? "opacity-100" : "opacity-0"
             }`}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900"></div>
-            <div className="absolute inset-0 bg-black/40"></div>
             <div className="relative h-full flex items-center justify-center text-center px-4">
               <div className="max-w-4xl">
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
@@ -321,12 +332,18 @@ const OneLondonChurch = () => {
                 key={idx}
                 className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
               >
-                <div
-                  className={`h-48 ${program.image} flex items-center justify-center`}
-                >
-                  <h3 className="text-3xl font-bold text-white">
-                    {program.title}
-                  </h3>
+                <div className="h-96 relative overflow-hidden">
+                  <Image
+                    src={program.image}
+                    alt={program.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                    <h3 className="text-3xl font-bold text-white drop-shadow-lg">
+                      {program.title}
+                    </h3>
+                  </div>
                 </div>
                 <div className="p-6">
                   <p className="text-gray-700 leading-relaxed mb-4">
@@ -347,7 +364,14 @@ const OneLondonChurch = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             <div className="order-2 lg:order-1">
-              <div className="aspect-video bg-gradient-to-br from-blue-400 to-indigo-600 rounded-lg shadow-xl"></div>
+              <div className="aspect-video relative rounded-lg shadow-xl overflow-hidden">
+                <Image
+                  src="/images/one-london-6.jpg"
+                  alt="Youth Ministry"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
             <div className="order-1 lg:order-2">
               <div className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-4">
@@ -388,13 +412,27 @@ const OneLondonChurch = () => {
               </button>
             </div>
             <div>
-              <div className="aspect-video bg-gradient-to-br from-purple-400 to-pink-600 rounded-lg shadow-xl"></div>
+              <div className="aspect-video relative rounded-lg shadow-xl overflow-hidden">
+                <Image
+                  src="/images/one-london-7.jpg"
+                  alt="Community Outreach"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <div className="aspect-video bg-gradient-to-br from-green-400 to-teal-600 rounded-lg shadow-xl"></div>
+              <div className="aspect-video relative rounded-lg shadow-xl overflow-hidden">
+                <Image
+                  src="/images/one-london-8.jpg"
+                  alt="Children's Ministry"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
             <div className="order-1 lg:order-2">
               <div className="inline-block px-4 py-2 bg-green-100 text-green-600 rounded-full text-sm font-semibold mb-4">
@@ -478,7 +516,14 @@ const OneLondonChurch = () => {
           <div className="relative max-w-4xl mx-auto">
             <div className="bg-white rounded-lg shadow-xl overflow-hidden">
               <div className="grid md:grid-cols-2">
-                <div className="aspect-square bg-gradient-to-br from-blue-400 to-purple-600"></div>
+                <div className="aspect-square relative overflow-hidden">
+                  <Image
+                    src="/images/one-london-1.jpg"
+                    alt={stories[activeStory].name}
+                    fill
+                    className="object-cover transition-opacity duration-500"
+                  />
+                </div>
                 <div className="p-8 flex flex-col justify-center">
                   <h3 className="text-3xl font-bold text-gray-900 mb-4">
                     {stories[activeStory].title}
