@@ -267,7 +267,9 @@ const OneLondonChurch = () => {
       {/* Mission & Vision */}
       <section
         id="about"
-        ref={(el) => (sectionRefs.current["about"] = el)}
+        ref={(el) => {
+          sectionRefs.current["about"] = el;
+        }}
         className="py-20 bg-gray-50"
       >
         <div
@@ -313,7 +315,9 @@ const OneLondonChurch = () => {
       {/* Programs */}
       <section
         id="programs"
-        ref={(el) => (sectionRefs.current["programs"] = el)}
+        ref={(el) => {
+          sectionRefs.current["programs"] = el;
+        }}
         className="py-20 bg-white"
       >
         <div
@@ -458,7 +462,9 @@ const OneLondonChurch = () => {
       {/* Services Schedule */}
       <section
         id="connect"
-        ref={(el) => (sectionRefs.current["connect"] = el)}
+        ref={(el) => {
+          sectionRefs.current["connect"] = el;
+        }}
         className="py-20 bg-white"
       >
         <div
@@ -500,7 +506,9 @@ const OneLondonChurch = () => {
       {/* Stories of Transformation */}
       <section
         id="media"
-        ref={(el) => (sectionRefs.current["media"] = el)}
+        ref={(el) => {
+          sectionRefs.current["media"] = el;
+        }}
         className="py-20 bg-gray-50"
       >
         <div
@@ -599,7 +607,9 @@ const OneLondonChurch = () => {
       {/* Contact Section */}
       <section
         id="contact"
-        ref={(el) => (sectionRefs.current["contact"] = el)}
+        ref={(el) => {
+          sectionRefs.current["contact"] = el;
+        }}
         className="py-20 bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900"
       >
         <div
