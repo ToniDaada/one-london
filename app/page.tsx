@@ -56,7 +56,7 @@ const PILLARS = [
     title: "Church Leadership Training",
     body: "We equip current and emerging church leaders with theological grounding, practical skills, and mentorship — building capacity for lasting Kingdom impact across London and beyond.",
     accent: "#C8A96E",
-    image: "/images/one-london-6.jpg",
+    image: "/images/one-london-18.jpg",
   },
   {
     icon: Users,
@@ -64,7 +64,7 @@ const PILLARS = [
     title: "Community Service",
     body: "From food banks to housing support, our teams meet practical needs in underserved London communities — because faith without works is incomplete.",
     accent: "#6EA8C8",
-    image: "/images/one-london-7.jpg",
+    image: "/images/one-london-14.png",
   },
   {
     icon: Heart,
@@ -72,7 +72,7 @@ const PILLARS = [
     title: "Social Welfare & Support",
     body: "We walk alongside vulnerable individuals and families — offering counselling, financial guidance, and pastoral care rooted in Christian compassion.",
     accent: "#C86E8A",
-    image: "/images/one-london-3.jpg",
+    image: "/images/one-london-16.png",
   },
   {
     icon: Globe,
@@ -93,19 +93,20 @@ const STATS = [
 
 const STORIES = [
   {
-    name: "Pastor James Osei",
-    role: "Leadership Programme Graduate",
-    quote:
-      "The training I received through One London gave me not just knowledge, but the confidence and community to lead with purpose. My church has grown in health and in numbers.",
-    image: "/images/one-london-1.jpg",
-  },
-  {
     name: "The Mensah Family",
     role: "Community Support Beneficiaries",
     quote:
       "When we went through our hardest season, One London was there — practically and spiritually. We didn't just receive help; we found a family.",
-    image: "/images/one-london-2.jpg",
+    image: "/images/one-london-17.webp",
   },
+  {
+    name: "Pastor James Osei",
+    role: "Leadership Programme Graduate",
+    quote:
+      "The training I received through One London gave me not just knowledge, but the confidence and community to lead with purpose. My church has grown in health and in numbers.",
+    image: "/images/one-london-19.png",
+  },
+
   {
     name: "Rev. Sarah Adeyemi",
     role: "Partner Church Leader",
@@ -838,7 +839,7 @@ export default function OneLondonCharity() {
             >
               <div style={{ position: "absolute", inset: 0, borderRadius: 0 }}>
                 <Image
-                  src="/images/one-london-13.png"
+                  src="/images/one-london-15.png"
                   alt="One London"
                   fill
                   style={{ objectFit: "cover" }}
