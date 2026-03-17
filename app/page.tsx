@@ -14,11 +14,13 @@ import {
   BookOpen,
   Heart,
   Globe,
-  ExternalLink,
+  Coffee,
+  Zap,
+  Sunrise,
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────
-   HOOK: useInView  (replaces IntersectionObserver boilerplate)
+   HOOK: useInView
 ───────────────────────────────────────────── */
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -41,7 +43,14 @@ function useInView(threshold = 0.15) {
 /* ─────────────────────────────────────────────
    DATA
 ───────────────────────────────────────────── */
-const NAV_LINKS = ["About", "Initiatives", "Impact", "Get Involved", "Contact"];
+const NAV_LINKS = [
+  "About",
+  "Our Story",
+  "Initiatives",
+  "Impact",
+  "Get Involved",
+  "Contact",
+];
 
 const HERO_LINES = [
   "Faith in Action.",
@@ -84,6 +93,53 @@ const PILLARS = [
   },
 ];
 
+const PROGRAMMES = [
+  {
+    icon: Coffee,
+    tag: "All Leaders",
+    title: "Leadership Breakfast",
+    body: "Designed to strengthen leadership capacity and support the critical transition into discipleship, the Leadership Breakfast has become a cornerstone of the ministry. A powerful networking and evangelism platform, it brings leaders together for vision sharing and deeper discipleship.",
+    accent: "#C8A96E",
+  },
+  {
+    icon: Zap,
+    tag: "Ages 23–30",
+    title: "Liquid",
+    body: "A dynamic network for young adults aged 23–30, offering a space to explore the Christian faith in an open, engaging environment. Liquid fosters meaningful relationships and spiritual growth among young professionals navigating faith and career in the city.",
+    accent: "#6EA8C8",
+  },
+  {
+    icon: Sunrise,
+    tag: "Ages 17–22",
+    title: "Counter Culture",
+    body: "An outreach initiative targeting 17–22-year-olds. These hangouts take place in relaxed settings — cafés and restaurants — sparking honest conversations and giving young adults practical insights into living as a Christian in today's culture.",
+    accent: "#C86E8A",
+  },
+];
+
+const TIMELINE = [
+  {
+    year: "2015",
+    title: "The First Service",
+    body: "On February 15, 2015, One London held its first service in Mayfair — the heart of Central London. Evening services in a relaxed atmosphere with contemporary, interactive worship aimed at people of all backgrounds. Truly 'church unusual.'",
+  },
+  {
+    year: "2016",
+    title: "Growing Roots",
+    body: "The church moved to the 20th Century Theatre in Notting Hill, then subsequently to Euston — expanding its footprint across the city and deepening its community presence.",
+  },
+  {
+    year: "2018",
+    title: "Sent into the World",
+    body: "One London began shifting its focus from Sunday services to being sent into the world — living out the gospel in everyday spaces, often outside traditional church structures.",
+  },
+  {
+    year: "Today",
+    title: "A Charity with Purpose",
+    body: "Now a registered Christian charity, One London equips leaders, serves communities, and partners with churches across London — bringing hope and transformation to the city.",
+  },
+];
+
 const STATS = [
   { value: "10+", label: "Years Serving London" },
   { value: "500+", label: "Leaders Trained" },
@@ -106,7 +162,6 @@ const STORIES = [
       "The training I received through One London gave me not just knowledge, but the confidence and community to lead with purpose. My church has grown in health and in numbers.",
     image: "/images/one-london-19.png",
   },
-
   {
     name: "Rev. Sarah Adeyemi",
     role: "Partner Church Leader",
@@ -128,7 +183,9 @@ export default function OneLondonCharity() {
 
   const heroRef = useRef<HTMLDivElement>(null);
   const about = useInView();
+  const storySection = useInView();
   const pillarsSection = useInView();
+  const programmesSection = useInView();
   const statsSection = useInView();
   const storiesSection = useInView();
   const ctaSection = useInView();
@@ -187,7 +244,6 @@ export default function OneLondonCharity() {
           overflow-x: hidden;
         }
 
-        /* Custom cursor */
         .custom-cursor {
           position: fixed;
           width: 12px; height: 12px;
@@ -200,7 +256,6 @@ export default function OneLondonCharity() {
           mix-blend-mode: multiply;
         }
 
-        /* Scroll reveal */
         .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s cubic-bezier(.2,.8,.3,1), transform 0.9s cubic-bezier(.2,.8,.3,1); }
         .reveal.visible { opacity: 1; transform: none; }
         .reveal-delay-1 { transition-delay: 0.1s; }
@@ -208,11 +263,9 @@ export default function OneLondonCharity() {
         .reveal-delay-3 { transition-delay: 0.34s; }
         .reveal-delay-4 { transition-delay: 0.46s; }
 
-        /* Fade from left */
         .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.9s cubic-bezier(.2,.8,.3,1), transform 0.9s cubic-bezier(.2,.8,.3,1); }
         .reveal-left.visible { opacity: 1; transform: none; }
 
-        /* Noise texture overlay */
         .noise::after {
           content: '';
           position: absolute;
@@ -222,7 +275,6 @@ export default function OneLondonCharity() {
           z-index: 1;
         }
 
-        /* Gold underline link */
         .gold-link {
           position: relative;
           text-decoration: none;
@@ -238,7 +290,6 @@ export default function OneLondonCharity() {
         }
         .gold-link:hover::after { width: 100%; }
 
-        /* Hero text cycling */
         @keyframes fadeSlideUp {
           0% { opacity: 0; transform: translateY(24px); }
           15% { opacity: 1; transform: translateY(0); }
@@ -247,7 +298,6 @@ export default function OneLondonCharity() {
         }
         .hero-cycling { animation: fadeSlideUp 3.2s ease-in-out infinite; }
 
-        /* Nav link */
         .nav-link {
           font-size: 0.82rem;
           letter-spacing: 0.08em;
@@ -268,7 +318,6 @@ export default function OneLondonCharity() {
         }
         .nav-link:hover::after { width: 100%; }
 
-        /* Pill tag */
         .tag {
           font-family: var(--font-body);
           font-size: 0.68rem;
@@ -280,7 +329,6 @@ export default function OneLondonCharity() {
           display: inline-block;
         }
 
-        /* Pillar card */
         .pillar-card {
           background: #fff;
           border: 1px solid var(--border);
@@ -304,7 +352,49 @@ export default function OneLondonCharity() {
           transform: scale(1.06);
         }
 
-        /* Stat counter */
+        /* Programme card — no image, more editorial */
+        .programme-card {
+          border: 1px solid var(--border);
+          border-radius: 2px;
+          padding: 36px 32px 40px;
+          background: #fff;
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        .programme-card::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0;
+          width: 3px; height: 0;
+          background: var(--accent-color);
+          transition: height 0.4s ease;
+        }
+        .programme-card:hover::before { height: 100%; }
+        .programme-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 20px 48px rgba(0,0,0,0.08);
+        }
+
+        /* Timeline */
+        .timeline-item {
+          display: grid;
+          grid-template-columns: 120px 1fr;
+          gap: 32px;
+          padding: 36px 0;
+          border-bottom: 1px solid var(--border);
+          align-items: start;
+        }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-year {
+          font-family: var(--font-display);
+          font-size: 2.4rem;
+          font-weight: 300;
+          color: var(--gold);
+          line-height: 1;
+          padding-top: 4px;
+        }
+
         .stat-number {
           font-family: var(--font-display);
           font-weight: 300;
@@ -313,7 +403,6 @@ export default function OneLondonCharity() {
           color: var(--gold);
         }
 
-        /* Story card */
         .story-card {
           background: var(--ink);
           color: var(--cream);
@@ -321,7 +410,6 @@ export default function OneLondonCharity() {
           overflow: hidden;
         }
 
-        /* Gold btn */
         .btn-gold {
           display: inline-flex;
           align-items: center;
@@ -345,7 +433,6 @@ export default function OneLondonCharity() {
           gap: 14px;
         }
 
-        /* Outline btn */
         .btn-outline {
           display: inline-flex;
           align-items: center;
@@ -370,7 +457,6 @@ export default function OneLondonCharity() {
           gap: 14px;
         }
 
-        /* Outline white btn */
         .btn-outline-white {
           display: inline-flex;
           align-items: center;
@@ -396,14 +482,12 @@ export default function OneLondonCharity() {
           gap: 14px;
         }
 
-        /* Divider line */
         .divider {
           width: 48px; height: 1px;
           background: var(--gold);
           margin-bottom: 24px;
         }
 
-        /* Section label */
         .section-label {
           font-family: var(--font-body);
           font-size: 0.68rem;
@@ -415,7 +499,6 @@ export default function OneLondonCharity() {
           display: block;
         }
 
-        /* Contact input */
         .contact-input {
           width: 100%;
           background: transparent;
@@ -431,7 +514,6 @@ export default function OneLondonCharity() {
         .contact-input::placeholder { color: rgba(247,243,238,0.4); }
         .contact-input:focus { border-bottom-color: var(--gold); }
 
-        /* Marquee */
         @keyframes marquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -444,7 +526,6 @@ export default function OneLondonCharity() {
         }
         .marquee-inner:hover { animation-play-state: paused; }
 
-        /* Mobile nav */
         .mobile-menu {
           position: fixed;
           inset: 0;
@@ -461,7 +542,7 @@ export default function OneLondonCharity() {
         .mobile-menu.open { transform: translateY(0); }
         .mobile-nav-link {
           font-family: var(--font-display);
-          font-size: clamp(2rem, 8vw, 3.5rem);
+          font-size: clamp(1.8rem, 7vw, 3rem);
           font-weight: 300;
           color: var(--cream);
           text-decoration: none;
@@ -470,10 +551,11 @@ export default function OneLondonCharity() {
         }
         .mobile-nav-link:hover { color: var(--gold); }
 
-        /* Responsive */
         @media (max-width: 768px) {
           .hide-mobile { display: none !important; }
           .show-mobile { display: flex !important; }
+          .timeline-item { grid-template-columns: 80px 1fr; gap: 16px; }
+          .timeline-year { font-size: 1.8rem; }
         }
         @media (min-width: 769px) {
           .show-mobile { display: none !important; }
@@ -486,9 +568,7 @@ export default function OneLondonCharity() {
         style={{ left: cursorPos.x, top: cursorPos.y }}
       />
 
-      {/* ──────────────────────────────────────────
-          MOBILE MENU
-      ────────────────────────────────────────── */}
+      {/* ── MOBILE MENU ── */}
       <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
         <button
           onClick={() => setMobileOpen(false)}
@@ -523,9 +603,7 @@ export default function OneLondonCharity() {
         </a>
       </div>
 
-      {/* ──────────────────────────────────────────
-          NAVIGATION
-      ────────────────────────────────────────── */}
+      {/* ── NAVIGATION ── */}
       <nav
         style={{
           position: "fixed",
@@ -544,7 +622,6 @@ export default function OneLondonCharity() {
           transition: "all 0.4s ease",
         }}
       >
-        {/* Logo */}
         <a
           href="#home"
           style={{
@@ -577,10 +654,9 @@ export default function OneLondonCharity() {
           </div>
         </a>
 
-        {/* Desktop links */}
         <div
           className="hide-mobile"
-          style={{ display: "flex", alignItems: "center", gap: 36 }}
+          style={{ display: "flex", alignItems: "center", gap: 28 }}
         >
           {NAV_LINKS.map((l) => (
             <a
@@ -601,7 +677,6 @@ export default function OneLondonCharity() {
           </a>
         </div>
 
-        {/* Mobile hamburger */}
         <button
           className="show-mobile"
           onClick={() => setMobileOpen(true)}
@@ -617,9 +692,7 @@ export default function OneLondonCharity() {
         </button>
       </nav>
 
-      {/* ──────────────────────────────────────────
-          HERO
-      ────────────────────────────────────────── */}
+      {/* ── HERO ── */}
       <section
         id="home"
         ref={heroRef}
@@ -634,7 +707,6 @@ export default function OneLondonCharity() {
           background: "var(--ink)",
         }}
       >
-        {/* Background image */}
         <div style={{ position: "absolute", inset: 0 }}>
           <Image
             src="/images/one-london-12.png"
@@ -661,7 +733,6 @@ export default function OneLondonCharity() {
             padding: "0 clamp(24px, 6vw, 96px)",
           }}
         >
-          {/* Charity tag */}
           <div
             style={{
               marginBottom: 24,
@@ -685,7 +756,6 @@ export default function OneLondonCharity() {
             </span>
           </div>
 
-          {/* Cycling headline */}
           <div
             style={{
               overflow: "hidden",
@@ -733,7 +803,6 @@ export default function OneLondonCharity() {
             </a>
           </div>
 
-          {/* Scroll indicator */}
           <div
             style={{
               position: "absolute",
@@ -751,7 +820,6 @@ export default function OneLondonCharity() {
                 height: 60,
                 background:
                   "linear-gradient(to bottom, transparent, rgba(200,169,110,0.8))",
-                animation: "grow 2s ease-in-out infinite",
               }}
             />
             <span
@@ -769,15 +837,12 @@ export default function OneLondonCharity() {
         </div>
       </section>
 
-      {/* ──────────────────────────────────────────
-          MARQUEE BAND
-      ────────────────────────────────────────── */}
+      {/* ── MARQUEE BAND ── */}
       <div
         style={{
           background: "var(--gold)",
           padding: "14px 0",
           overflow: "hidden",
-          borderTop: "none",
         }}
       >
         <div className="marquee-inner">
@@ -812,9 +877,7 @@ export default function OneLondonCharity() {
         </div>
       </div>
 
-      {/* ──────────────────────────────────────────
-          ABOUT
-      ────────────────────────────────────────── */}
+      {/* ── ABOUT ── */}
       <section
         id="about"
         style={{
@@ -832,7 +895,7 @@ export default function OneLondonCharity() {
             }}
             className="responsive-grid"
           >
-            {/* Left: image stack */}
+            {/* Left: image */}
             <div
               className={`reveal reveal-left ${about.inView ? "visible" : ""}`}
               style={{ position: "relative", aspectRatio: "4/5" }}
@@ -845,7 +908,6 @@ export default function OneLondonCharity() {
                   style={{ objectFit: "cover" }}
                 />
               </div>
-              {/* Accent card */}
               <div
                 style={{
                   position: "absolute",
@@ -930,9 +992,10 @@ export default function OneLondonCharity() {
                   marginBottom: 36,
                 }}
               >
-                From training the next generation of church leaders to running
-                practical community support programmes, our work is anchored in
-                the belief that faith must be demonstrated in action.
+                Our vision is to be a light for the city of London — a platform
+                for people from different cultures and nations to be empowered
+                by Christ, and sent into the world to live out the gospel in
+                everyday spaces.
               </p>
               <div
                 className={`reveal reveal-delay-4 ${about.inView ? "visible" : ""}`}
@@ -941,8 +1004,8 @@ export default function OneLondonCharity() {
                 <a href="#initiatives" className="btn-gold">
                   Our Initiatives <ArrowRight size={14} />
                 </a>
-                <a href="#contact" className="btn-outline">
-                  Partner With Us <ArrowRight size={14} />
+                <a href="#our-story" className="btn-outline">
+                  Our Story <ArrowRight size={14} />
                 </a>
               </div>
             </div>
@@ -955,13 +1018,125 @@ export default function OneLondonCharity() {
         `}</style>
       </section>
 
-      {/* ──────────────────────────────────────────
-          INITIATIVES (PILLARS)
-      ────────────────────────────────────────── */}
+      {/* ── OUR STORY (TIMELINE) ── */}
+      <section
+        id="our-story"
+        style={{
+          background: "#F0EBE3",
+          padding: "clamp(80px, 12vh, 140px) clamp(24px, 6vw, 96px)",
+        }}
+      >
+        <div
+          ref={storySection.ref}
+          style={{ maxWidth: 1200, margin: "0 auto" }}
+        >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1.6fr",
+              gap: "clamp(40px, 8vw, 120px)",
+              alignItems: "start",
+            }}
+            className="story-layout-grid"
+          >
+            {/* Left: heading + context */}
+            <div style={{ position: "sticky", top: 100 }}>
+              <span
+                className={`section-label reveal ${storySection.inView ? "visible" : ""}`}
+              >
+                The Early Years
+              </span>
+              <div className="divider" />
+              <h2
+                className={`reveal reveal-delay-1 ${storySection.inView ? "visible" : ""}`}
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2.4rem, 4vw, 3.8rem)",
+                  fontWeight: 400,
+                  lineHeight: 1.1,
+                  color: "var(--ink)",
+                  marginBottom: 24,
+                }}
+              >
+                A Brand-New Concept
+              </h2>
+              <p
+                className={`reveal reveal-delay-2 ${storySection.inView ? "visible" : ""}`}
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "1rem",
+                  lineHeight: 1.85,
+                  color: "var(--muted)",
+                  marginBottom: 16,
+                }}
+              >
+                One London began with a bold vision — to be a light for the city
+                and a gathering place for people from every culture and nation,
+                empowered by Christ.
+              </p>
+              <p
+                className={`reveal reveal-delay-3 ${storySection.inView ? "visible" : ""}`}
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "1rem",
+                  lineHeight: 1.85,
+                  color: "var(--muted)",
+                }}
+              >
+                What started as a contemporary worship community in Mayfair grew
+                into something wider — a charity committed to living out the
+                gospel in the everyday fabric of city life.
+              </p>
+            </div>
+
+            {/* Right: timeline */}
+            <div
+              className={`reveal reveal-delay-2 ${storySection.inView ? "visible" : ""}`}
+            >
+              {TIMELINE.map((item, i) => (
+                <div key={item.year} className="timeline-item">
+                  <div className="timeline-year">{item.year}</div>
+                  <div>
+                    <h3
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: "1.5rem",
+                        fontWeight: 600,
+                        color: "var(--ink)",
+                        marginBottom: 10,
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "0.92rem",
+                        lineHeight: 1.8,
+                        color: "var(--muted)",
+                      }}
+                    >
+                      {item.body}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <style>{`
+          @media (max-width: 768px) {
+            .story-layout-grid { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
+      </section>
+
+      {/* ── INITIATIVES (PILLARS) ── */}
       <section
         id="initiatives"
         style={{
-          background: "#F0EBE3",
+          background: "var(--cream)",
           padding: "clamp(80px, 12vh, 140px) clamp(24px, 6vw, 96px)",
         }}
       >
@@ -1109,9 +1284,157 @@ export default function OneLondonCharity() {
         </div>
       </section>
 
-      {/* ──────────────────────────────────────────
-          STATS BAND
-      ────────────────────────────────────────── */}
+      {/* ── PROGRAMMES ── */}
+      <section
+        id="programmes"
+        style={{
+          background: "#F0EBE3",
+          padding: "clamp(80px, 12vh, 140px) clamp(24px, 6vw, 96px)",
+        }}
+      >
+        <div
+          ref={programmesSection.ref}
+          style={{ maxWidth: 1200, margin: "0 auto" }}
+        >
+          <div style={{ marginBottom: "clamp(40px, 6vh, 72px)" }}>
+            <span
+              className={`section-label reveal ${programmesSection.inView ? "visible" : ""}`}
+            >
+              Our Programmes
+            </span>
+            <div className="divider" />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                flexWrap: "wrap",
+                gap: 24,
+              }}
+            >
+              <h2
+                className={`reveal reveal-delay-1 ${programmesSection.inView ? "visible" : ""}`}
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2.4rem, 4.5vw, 4rem)",
+                  fontWeight: 400,
+                  lineHeight: 1.1,
+                  color: "var(--ink)",
+                  maxWidth: 500,
+                }}
+              >
+                Spaces to Connect, Grow & Belong
+              </h2>
+              <p
+                className={`reveal reveal-delay-2 ${programmesSection.inView ? "visible" : ""}`}
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "0.95rem",
+                  color: "var(--muted)",
+                  maxWidth: 360,
+                  lineHeight: 1.7,
+                }}
+              >
+                From leadership gatherings to young adult networks, our
+                programmes create meaningful entry points for people at every
+                stage of faith.
+              </p>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: 24,
+            }}
+          >
+            {PROGRAMMES.map((p, i) => (
+              <div
+                key={p.title}
+                className={`programme-card reveal reveal-delay-${i + 1} ${programmesSection.inView ? "visible" : ""}`}
+                style={{ "--accent-color": p.accent } as React.CSSProperties}
+              >
+                {/* Icon + tag row */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    marginBottom: 24,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 48,
+                      height: 48,
+                      background: `${p.accent}18`,
+                      border: `1px solid ${p.accent}40`,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: 2,
+                    }}
+                  >
+                    <p.icon size={20} color={p.accent} strokeWidth={1.5} />
+                  </div>
+                  <span
+                    className="tag"
+                    style={{
+                      background: `${p.accent}18`,
+                      color: p.accent,
+                      border: `1px solid ${p.accent}30`,
+                    }}
+                  >
+                    {p.tag}
+                  </span>
+                </div>
+
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "1.7rem",
+                    fontWeight: 600,
+                    color: "var(--ink)",
+                    lineHeight: 1.2,
+                    marginBottom: 14,
+                  }}
+                >
+                  {p.title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "0.9rem",
+                    lineHeight: 1.8,
+                    color: "var(--muted)",
+                  }}
+                >
+                  {p.body}
+                </p>
+                <div
+                  style={{
+                    marginTop: 24,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6,
+                    color: p.accent,
+                    fontSize: "0.78rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    cursor: "pointer",
+                  }}
+                >
+                  Find Out More <ArrowRight size={13} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── STATS BAND ── */}
       <section
         style={{
           background: "var(--ink)",
@@ -1155,9 +1478,7 @@ export default function OneLondonCharity() {
         </div>
       </section>
 
-      {/* ──────────────────────────────────────────
-          IMPACT / STORIES
-      ────────────────────────────────────────── */}
+      {/* ── IMPACT / STORIES ── */}
       <section
         id="impact"
         style={{
@@ -1191,7 +1512,6 @@ export default function OneLondonCharity() {
             </h2>
           </div>
 
-          {/* Story slider */}
           <div
             className={`story-card reveal reveal-delay-2 ${storiesSection.inView ? "visible" : ""}`}
           >
@@ -1199,7 +1519,6 @@ export default function OneLondonCharity() {
               style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr" }}
               className="story-grid"
             >
-              {/* Image */}
               <div
                 style={{
                   position: "relative",
@@ -1224,7 +1543,6 @@ export default function OneLondonCharity() {
                   }}
                 />
               </div>
-              {/* Content */}
               <div
                 style={{
                   padding: "clamp(40px, 5vw, 72px)",
@@ -1285,7 +1603,6 @@ export default function OneLondonCharity() {
                   </div>
                 </div>
 
-                {/* Controls */}
                 <div
                   style={{
                     display: "flex",
@@ -1374,9 +1691,7 @@ export default function OneLondonCharity() {
         `}</style>
       </section>
 
-      {/* ──────────────────────────────────────────
-          GET INVOLVED CTA
-      ────────────────────────────────────────── */}
+      {/* ── GET INVOLVED CTA ── */}
       <section
         id="get-involved"
         className="noise"
@@ -1387,7 +1702,6 @@ export default function OneLondonCharity() {
           overflow: "hidden",
         }}
       >
-        {/* Decorative background img */}
         <div style={{ position: "absolute", inset: 0, opacity: 0.08 }}>
           <Image
             src="/images/one-london-11.png"
@@ -1456,7 +1770,6 @@ export default function OneLondonCharity() {
                 Reach Out <ArrowRight size={15} />
               </a>
             </div>
-            {/* Cards */}
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {[
                 {
@@ -1538,9 +1851,7 @@ export default function OneLondonCharity() {
         `}</style>
       </section>
 
-      {/* ──────────────────────────────────────────
-          CONTACT
-      ────────────────────────────────────────── */}
+      {/* ── CONTACT ── */}
       <section
         id="contact"
         style={{
@@ -1561,7 +1872,6 @@ export default function OneLondonCharity() {
             }}
             className="contact-grid"
           >
-            {/* Left */}
             <div>
               <span
                 className={`section-label reveal ${contactSection.inView ? "visible" : ""}`}
@@ -1659,7 +1969,6 @@ export default function OneLondonCharity() {
               </div>
             </div>
 
-            {/* Right: form */}
             <div
               className={`reveal reveal-delay-2 ${contactSection.inView ? "visible" : ""}`}
             >
@@ -1740,9 +2049,7 @@ export default function OneLondonCharity() {
         `}</style>
       </section>
 
-      {/* ──────────────────────────────────────────
-          FOOTER
-      ────────────────────────────────────────── */}
+      {/* ── FOOTER ── */}
       <footer
         style={{
           background: "#080808",
@@ -1761,7 +2068,6 @@ export default function OneLondonCharity() {
               marginBottom: 48,
             }}
           >
-            {/* Brand */}
             <div style={{ maxWidth: 280 }}>
               <div
                 style={{
@@ -1799,7 +2105,6 @@ export default function OneLondonCharity() {
                 across London.
               </p>
             </div>
-            {/* Links */}
             <div
               style={{
                 display: "flex",
@@ -1820,10 +2125,16 @@ export default function OneLondonCharity() {
                 >
                   Organisation
                 </div>
-                {["About", "Initiatives", "Impact", "Partners"].map((l) => (
+                {[
+                  "About",
+                  "Our Story",
+                  "Initiatives",
+                  "Impact",
+                  "Partners",
+                ].map((l) => (
                   <a
                     key={l}
-                    href={`#${l.toLowerCase()}`}
+                    href={`#${l.toLowerCase().replace(" ", "-")}`}
                     style={{
                       display: "block",
                       fontFamily: "var(--font-body)",
@@ -1913,7 +2224,6 @@ export default function OneLondonCharity() {
               </div>
             </div>
           </div>
-          {/* Bottom bar */}
           <div
             style={{
               borderTop: "1px solid rgba(247,243,238,0.07)",
