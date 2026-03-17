@@ -1040,7 +1040,10 @@ export default function OneLondonCharity() {
             className="story-layout-grid"
           >
             {/* Left: heading + context */}
-            <div style={{ position: "sticky", top: 100 }}>
+            <div
+              className="story-sticky-col"
+              style={{ position: "sticky", top: 100 }}
+            >
               <span
                 className={`section-label reveal ${storySection.inView ? "visible" : ""}`}
               >
@@ -1126,10 +1129,11 @@ export default function OneLondonCharity() {
           </div>
         </div>
         <style>{`
-          @media (max-width: 768px) {
-            .story-layout-grid { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
+  @media (max-width: 768px) {
+    .story-layout-grid { grid-template-columns: 1fr !important; }
+    .story-sticky-col { position: static !important; top: auto !important; }
+  }
+`}</style>
       </section>
 
       {/* ── INITIATIVES (PILLARS) ── */}
